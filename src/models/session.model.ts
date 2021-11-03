@@ -4,7 +4,7 @@ import config from "config";
 import {boolean} from "zod";
 import {UserDocument} from "./user.models";
 
-export interface SchemaDocument extends mongoose.Document{ //TypeScript definition for UserSchema
+export interface SessionDocument extends mongoose.Document{ //TypeScript definition for UserSchema
     user: UserDocument["_id"];
     valid: boolean;
     userAgent: string;
@@ -20,6 +20,6 @@ const sessionSchema = new mongoose.Schema({ //Schema definition
     timestamps: true,
 });
 
-const SessionModel = mongoose.model("Session", sessionSchema); //Model
+const SessionModel = mongoose.model<SessionDocument>("Session", sessionSchema); //Model
 
 export default SessionModel;
