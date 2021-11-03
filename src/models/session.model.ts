@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import config from "config";
-import {boolean} from "zod";
 import {UserDocument} from "./user.models";
 
 export interface SessionDocument extends mongoose.Document{ //TypeScript definition for UserSchema
