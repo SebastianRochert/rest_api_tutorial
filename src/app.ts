@@ -9,6 +9,8 @@ const port = config.get<number>("port");
 
 const app = express();
 
+app.use(express.json());
+
 app.listen(port, async() => { //Tutorial said 1337 but this address is already in use
     //console.log("App is running");
     logger.info(`App is running at http://localhost:${port }`);
