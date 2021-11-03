@@ -14,7 +14,7 @@ export interface SchemaDocument extends mongoose.Document{ //TypeScript definiti
 
 const sessionSchema = new mongoose.Schema({ //Schema definition
     user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
-    valid: {type: boolean, default: true},
+    valid: {type: Boolean, default: true},
     userAgent: {type: String},
 }, {
     timestamps: true,
