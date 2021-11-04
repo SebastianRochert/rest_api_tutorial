@@ -30,6 +30,6 @@ const productSchema = new mongoose.Schema({ //Schema definition
     timestamps: true,
 });
 
-const ProductModel = mongoose.model<ProductDocument>("Session", productSchema); //Model
+const ProductModel = mongoose.model<ProductDocument>("Product", productSchema); //Model
 
 export default ProductModel;
