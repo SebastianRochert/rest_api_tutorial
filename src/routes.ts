@@ -6,6 +6,13 @@ import {createUserSchema} from "./schema/user.schema";
 import {createSessionSchema} from "./schema/session.schema";
 import {createUserSessionHandler, deleteSessionHandler, getUserSessionsHandler} from "./controller/session.controller";
 import requireUser from "./middleware/requireUser";
+import {createProductSchema, deleteProductSchema, getProductSchema, updateProductSchema} from "./schema/product.schema";
+import {
+    createProductHandler,
+    deleteProductHandler,
+    getProductHandler,
+    updateProductHandler
+} from "./controller/product.controller";
 
 function routes(app: Express){
     app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200)); //if this endpoint return a 200 the API is up and running
@@ -16,7 +23,15 @@ function routes(app: Express){
 
     app.get("/api/sessions", requireUser, getUserSessionsHandler);
 
-    app.delete("/api/sessions", requireUser, deleteSessionHandler);
+    app.delete("/api/sessions/:productId", requireUser, deleteSessionHandler);
+
+    app.post("/api/products", [requireUser, validateResources(createProductSchema)], createProductHandler);
+
+    app.put("/api/products/:productId", [requireUser, validateResources(updateProductSchema)], updateProductHandler);
+
+    app.get("/api/products/:productId", validateResources(getProductSchema), getProductHandler);
+
+    app.delete("/api/products/:productId", [requireUser, validateResources(deleteProductSchema)], deleteProductHandler);
 }
 
 export default routes;
